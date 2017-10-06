@@ -1,29 +1,30 @@
+import utils
+
 def note_to_int(note):
 	'''
 	Converts string representation of note into int, octave specified by last integer. 
 	'''
 	if ("#" in note) and ("b" in note):
 		raise ValueError("Note cannot be sharp and flat simultaneously")
-	note_vals = {
-		"A": 0,
-		"B": 2,
-		"C": 3,
-		"D": 5,
-		"E": 7,
-		"F": 8,
-		"G": 10
-	}
 	octave = int(note[-1]) 
 	note_letter = note[0]
 	if (octave > 8) or (octave < 1):
 		raise ValueError("Octave out of range")
 	if note_letter not in note_vals:
 		raise ValueError("Invalid note name")
-	result = 12 * (octave - 1) + note_vals[note_letter]
+	result = 12 * (octave - 1) + utils.note_vals[note_letter]
 	if "#" in note:
 		result += 1
 	if "b" in note:
 		result -= 1
+	return result
+
+def int_to_note(num, oct = False):
+	octave = num // 12
+	num = num % 12
+	result = utils.note_vals[num]
+	if oct:
+		result += octave
 	return result
 
 def cf_to_ints(cf):
@@ -54,9 +55,21 @@ def cpt(cf, gf):
 	
 	return cpt_inner([], cf, gf)
 
-def first_species(note, prev):
+def first_species(note, prev, mode):
 	'''
+	Given a note (int) and the previous counterpoint written
+	generates a list of potential next notes. 
+	Rules followed:
+	1. Only 3rds, 5th, 6th, 8th allowed
+	2. No repeating same note
+	3. Must recover all leaps
+	4. No perfect intervals in a row
+	5. No perfect intervals in similar motion
 	'''
+	options = [note + 3, note + 4, note + 7, note + 8, note + 9, note + 12]
+	for option in options:
+		in_mode = option in mode
+
 	pass
 
 def main():
