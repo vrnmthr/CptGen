@@ -26,6 +26,42 @@ def note_to_int(note):
 		result -= 1
 	return result
 
+def cf_to_ints(cf):
+	'''
+	Converts space separated list of notes into list of integers
+	'''
+	return [note_to_int(note) for note in cf.split()]    
+
+def cpt(cf, gf):
+	'''
+	Returns counterpoint for a given cf (list of ints), and a
+	valid generation function. 
+	'''
+	def cpt_inner(cpt, cf, gf):
+		'''
+		Calculates counterpoint from given note until 
+		'''
+		#cpt is list of tuples where first int represents cpt note
+		#and second int represents interval between cpt and cf
+	
+		allowable = gf(cf[0])
+		for option in allowable:
+			added = (option, abs(cf[0] - option))
+			rest_cpt = cpt_inner(cpt + option, cf[1:], gf)
+			if rest_cpt:
+				return added + rest_cpt
+		return []
+	
+	return cpt_inner([], cf, gf)
+
+def first_species(note, prev):
+	'''
+	'''
+	pass
+
 def main():
-	note_to_int("C#")
-	print "started"
+	cf = cf_to_ints("C#1 A1 Bb1")
+	print cf
+
+if __name__ == '__main__':
+    main()

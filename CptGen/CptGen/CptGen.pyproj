@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8f4fdf7f-a3c4-4777-b5d8-8d2ebf6e9a39</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>unittests.py</StartupFile>
+    <StartupFile>CptGen.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
