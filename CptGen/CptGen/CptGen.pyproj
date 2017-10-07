@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CptGen.py" />
+    <Compile Include="species.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="unittests.py">
       <SubType>Code</SubType>
     </Compile>
