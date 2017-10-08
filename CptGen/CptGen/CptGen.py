@@ -1,4 +1,5 @@
 import utils as u
+import species
 
 def note_to_int(note):
     '''
@@ -101,11 +102,13 @@ def first_species(cf, prev, mode):
     return filtered
 
 def main():
-	cf_in = "C4 D4 F4 E4 D4 E4 D4 C4"
-	cf = cf_to_ints(cf_in)
-	harmony = cpt(cf, first_species)
-	print cf_in
-	print [int_to_note(h[0], True) for h in harmony]
+    cf_in = "C4 D4 F4 E4 D4 E4 D4 C4"
+    cf = cf_to_ints(cf_in)
+    harmony = cpt(cf, first_species)
+    score = species.FirstSpecies.score(cf, harmony)
+    print cf_in
+    print [int_to_note(h[0], True) for h in harmony]
+    print score
 
 if __name__ == '__main__':
     main()
