@@ -21,7 +21,7 @@ def note_to_int(note):
     return result
 
 def int_to_note(num, oct=False):
-    octave = num // 12
+    octave = num // 12 + 1
     num = num % 12
     result = u.int_to_note[num]
     if oct:
@@ -39,7 +39,7 @@ def cpt(cf, gf):
     Returns counterpoint for a given cf (list of ints), and a
     valid generation function. 
     '''
-    def cpt_inner(cf, cpt):
+    def cpt_inner(cf, cpt, base=False):
         '''
         Calculates counterpoint from given note until 
         '''
@@ -51,10 +51,24 @@ def cpt(cf, gf):
                 return [option]
             rest_cpt = cpt_inner(cf[1:], cpt + [option])
             if rest_cpt:
-                return [option] + rest_cpt
+                result = [option] + rest_cpt
+                if base:
+                    error = species.FirstSpecies.score(cf, result)
+                    if error < threshold:
+                        return result
+                    else:
+                        if vars['counter'] >= max_iterations:
+                            return vars['sol'][0]
+                        vars['sol'] = min(vars['sol'], (result, error), key=lambda i:i[1])
+                        vars['counter'] += 1
+                else:
+                    return result
         return []
     
-    return cpt_inner(cf, list())
+    vars = {'counter':0, 'sol': (None, float('inf'))}
+    threshold = 0.1
+    max_iterations = 1000
+    return cpt_inner(cf, list(), True)
 
 def first_species(cf, prev, mode):
     '''

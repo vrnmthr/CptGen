@@ -51,7 +51,7 @@ def is_sixth(note1, note2):
 
 def is_octave(note1, note2):
     distance = abs(note1 - note2) % 12 
-    return distance == 12
+    return distance == 0
 
 
 def is_perfect(interval):

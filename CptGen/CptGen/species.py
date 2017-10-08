@@ -42,8 +42,9 @@ class FirstSpecies():
         leaps_err = (ideal_leaps - float(num_leaps)/l) ** 2
         #scores the shape
         climax_freq = c[max(cpt, key=lambda h:h[0])[0]]
+        climax_err = float((1 - climax_freq) ** 2)/l
         d_changes = sum(1 for x in range(l-2) if (cpt[x][0] - cpt[x+1][0])*(cpt[x+1][0] - cpt[x+2][0]) < 0)
         ideal_d = float(3)/8
         d_changes_err = (ideal_d - (float(d_changes)/l)) ** 2
-        total = itvl_sigma + note_sigma + p_ratio_err + d_changes_err + leaps_err
+        total = itvl_sigma + note_sigma + p_ratio_err + d_changes_err + leaps_err + climax_err
         return total
