@@ -69,9 +69,20 @@ def in_mode(note, mode):
     return note in mode
 
 def scale_degree(note, mode):
-    mode = [0, 2, 3, 5, 7, 8, 10]
-    note = note % 12
-    try:
-        return mode.index(note)
-    except ValueError:
-        return -1
+    base = 3
+    note = note % 12 - base
+    if note < 0:
+        note += 12
+    if note < 1:
+        return 1
+    if note < 3:
+        return 2
+    if note < 5:
+        return 3
+    if note == 7:
+        return 5
+    if note < 10:
+        return 6
+    if note < 12:
+        return 7
+    raise ValueError

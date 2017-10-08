@@ -20,12 +20,9 @@ class FirstSpecies(SpeciesCpt):
         
     def next_move():
         pass
-
+    
+    @staticmethod
     def score(self):
-        """thirds = sum(1 for intrvl in self.cpt if u.isThird(intrvl[1]))
-        fifths = sum(1 for intrvl in self.cpt if u.isFifth(intrvl[1]))
-        sixths = sum(1 for intrvl in self.cpt if u.isSixth(intrvl[1]))
-        octaves = sum(1 for intrvl in self.cpt if u.isOctave(intrvl[1]))"""
         l = len(self.cpt)
         #calculates how often a given interval is selected in cpt
         check_intrvls = [u.is_third, u.is_fifth, u.is_sixth, u.is_octave]
