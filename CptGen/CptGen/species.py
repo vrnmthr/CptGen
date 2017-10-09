@@ -202,7 +202,7 @@ class SecondSpecies(SpeciesCpt):
     @staticmethod
     def score(cf, cpt):
         """Score a given counterpoint"""
-        l = len(cpt)
+        """l = len(cpt)
         #calculates how often a given interval is selected in cpt
         check_intrvls = [u.is_third, u.is_fifth, u.is_sixth, u.is_octave]
         intrvls = [sum(1 for x in range(l) if f(cpt[x][0], cf[x][0])) for f in check_intrvls]
@@ -224,4 +224,5 @@ class SecondSpecies(SpeciesCpt):
         ideal_d = float(3)/8
         d_changes_err = (ideal_d - (float(d_changes)/l)) ** 2
         total = itvl_sigma + note_sigma + p_ratio_err + d_changes_err + leaps_err + climax_err
-        return total
+        return total"""
+        return 0
