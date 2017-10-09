@@ -40,7 +40,8 @@ def cpt(cf, spcs):
 
 def main():
     cf_in = "C4 D4 F4 E4 D4 E4 D4 C4"
-    spcs = species.FirstSpecies
+    #spcs = species.FirstSpecies
+    spcs = species.SecondSpecies
     cf = spcs.generate_cf(cf_in)
     harmony = cpt(cf, spcs)
     print harmony

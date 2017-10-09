@@ -53,6 +53,8 @@ perfects = [0, 7, 12]
 dissonances = [1, 2, 5, 6, 10, 11]
 
 def is_melodic_leap(note1, note2):
+    '''Returns true if interval between both notes is not
+    unison, tritone, or 7th'''
     leaps = [0, 6, 10, 11]
     return not abs(note1 - note2) % 12 in leaps
 
@@ -76,6 +78,15 @@ def is_octave(note1, note2):
     distance = abs(note1 - note2) % 12 
     return distance == 0
 
+def stepwise(prev, next):
+    '''Returns true if next moves in stepwise motion from prev, 
+    where prev and next are ints representing notes'''
+    intrvl = abs(prev - next)
+    return intrvl == 1 or intrvl == 2
+
+def change_direction(note1, note2, note3):
+    '''Returns true if direction changes around note2'''
+    return (note1 - note2)*(note2 - note3) < 0
 
 def is_perfect(interval):
     return (interval % 12) in perfects
