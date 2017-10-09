@@ -1,29 +1,52 @@
-note_to_int = {
-    "A": 0,
-    "B": 2,
-    "C": 3,
-    "D": 5,
-    "E": 7,
-    "F": 8,
-    "G": 10
-}
+def note_to_int(note):
+    '''
+	Converts string representation of note into int, octave specified by last integer.
+    '''
+    note_to_int_dict = {
+        "A": 0,
+        "B": 2,
+        "C": 3,
+        "D": 5,
+        "E": 7,
+        "F": 8,
+        "G": 10
+    }
+    if ("#" in note) and ("b" in note):
+        raise ValueError("Note cannot be sharp and flat simultaneously")
+    octave = int(note[-1]) 
+    note_letter = note[0]
+    if (octave > 8) or (octave < 1):
+        raise ValueError("Octave out of range")
+    if note_letter not in note_to_int_dict:
+        raise ValueError("Invalid note name")
+    result = 12 * (octave - 1) + note_to_int_dict[note_letter]
+    if "#" in note:
+        result += 1
+    if "b" in note:
+        result -= 1
+    return result
 
-int_to_note = {
-    0 : "A",
-    1 : "A#",
-    2 : "B",
-    3 : "C",
-    4 : "C#",
-    5 : "D",
-    6 : "D#",
-    7 : "E",
-    8 : "F",
-    9 : "F#",
-    10 : "G",
-    11 : "G#"
-}
-
-
+def int_to_note(num, oct=False):
+    int_to_note_dict = {
+        0 : "A",
+        1 : "A#",
+        2 : "B",
+        3 : "C",
+        4 : "C#",
+        5 : "D",
+        6 : "D#",
+        7 : "E",
+        8 : "F",
+        9 : "F#",
+        10 : "G",
+        11 : "G#"
+    }
+    octave = num // 12 + 1
+    num = num % 12
+    result = int_to_note_dict[num]
+    if oct:
+        result += str(octave)
+    return result
 
 consonances = [3, 4, 7, 8, 9, 12]
 perfects = [0, 7, 12]
