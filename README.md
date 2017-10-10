@@ -1,7 +1,7 @@
 # CptGen
 An intelligent counterpoint generator
 
-Feature list:
+Features to add:
 - Automatic mode detection
 - Bidirectional Search
 - Randomness in variables
