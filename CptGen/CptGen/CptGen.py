@@ -71,8 +71,8 @@ def main():
     cf_in = "C4 D4 F4 E4 D4 E4 D4 C4"
     mode = detect_mode(cf_to_ints(cf_in))
     print "Detected mode: " + mode[0] + "\n"
-    #spcs = species.FirstSpecies
-    spcs = species.SecondSpecies
+    spcs = species.FirstSpecies
+    #spcs = species.SecondSpecies
     cf = spcs.generate_cf(cf_in)
     harmony = cpt(cf, spcs, mode[1])
     print harmony

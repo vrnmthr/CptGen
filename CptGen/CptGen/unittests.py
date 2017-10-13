@@ -5,12 +5,12 @@ import utils as u
 class TestMethods(unittest.TestCase):
 
     def test_note_to_int(self):
-        self.assertEqual(u.note_to_int("A1"), 0)
-        self.assertEqual(u.note_to_int("A#1"), 1)
-        self.assertEqual(u.note_to_int("C4"), 39)
-        self.assertEqual(u.note_to_int("C1"), 3)
-        self.assertEqual(u.note_to_int("F1"), 8)
-        self.assertEqual(u.note_to_int("C2"), 15)
+        self.assertEqual(u.note_to_int("A0"), -3)
+        self.assertEqual(u.note_to_int("A#0"), -2)
+        self.assertEqual(u.note_to_int("C4"), 36)
+        self.assertEqual(u.note_to_int("C1"), 0)
+        self.assertEqual(u.note_to_int("F1"), 5)
+        self.assertEqual(u.note_to_int("C2"), 12)
         self.assertRaises(ValueError, u.note_to_int, "Q1")
         self.assertRaises(ValueError, u.note_to_int, "A9")
         self.assertRaises(ValueError, u.note_to_int, ("A3#b"))
