@@ -78,6 +78,17 @@ def is_octave(note1, note2):
     distance = abs(note1 - note2) % 12 
     return distance == 0
 
+def modes():
+    mode = {
+        "ionian": [0, 2, 4, 5, 7, 9, 11],
+        "dorian": [0, 2, 3, 5, 7, 9, 10],
+        "phrygian": [0, 1, 3, 5, 7, 8, 10],
+        "lydian": [0, 2, 4, 6, 7, 9, 11],
+        "mixolydian": [0, 2, 4, 5, 7, 9, 10],
+        "aeolian": [0, 2, 3, 5, 7, 8, 10] 
+    }
+    return mode
+
 def stepwise(prev, next):
     '''Returns true if next moves in stepwise motion from prev, 
     where prev and next are ints representing notes'''
@@ -96,11 +107,6 @@ def is_consonance(interval):
 
 def is_dissonant(interval):
     return (interval % 12) in dissonances
-
-def in_mode(note, mode):
-    note = note % 12
-    mode = [0, 2, 3, 5, 7, 8, 10]
-    return note in mode
 
 def scale_degree(note, mode):
     base = 3

@@ -95,7 +95,7 @@ class FirstSpecies(SpeciesCpt):
         options = [(note + i + 12*j, i + 12*j) for j in range(2) for i in u.consonances]
         filtered = []
         for option in options:
-            in_mode = u.in_mode(option[0], None)
+            in_mode = option[0] % 12 in mode
             #only checks if note is in mode if it is first note
             if not prev:
                 if in_mode:
@@ -169,7 +169,7 @@ class SecondSpecies(SpeciesCpt):
         
         filtered = []
         for option in options:
-            in_mode = u.in_mode(option[0], None)
+            in_mode = option[0] % 12 in mode
             #only checks if note is in mode if it is first note
             if not prev:
                 if in_mode:
